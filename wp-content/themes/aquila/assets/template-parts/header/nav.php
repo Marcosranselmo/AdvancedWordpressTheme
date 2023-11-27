@@ -7,7 +7,7 @@
 ?>
 
 <nav class="navbar navbar-expand-lg bg-body-tertiary">
-  <div class="container-fluid">
+
     <?php
     if ( function_exists( 'the_custom_logo' ) ) {
       the_custom_logo();
@@ -44,5 +44,12 @@
         <button class="btn btn-outline-success" type="submit">Search</button>
       </form>
     </div>
-  </div>
 </nav>
+<?php
+wp_nav_menu(
+  [
+    'theme_location' => 'aquila-header-menu',
+    'container_class' => 'my_extra_menu_class'
+  ]
+  );
+?>
