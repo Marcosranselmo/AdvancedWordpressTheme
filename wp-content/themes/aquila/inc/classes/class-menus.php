@@ -33,4 +33,14 @@ class Menus {
             'aquila-footer-menu' => esc_html__( 'Footer Menu', 'aquila' ),
         ]);
     }
+
+    public function get_menu_id( $location ) {
+        // Get all the locations.
+        $location = get_nav_menu_locations();
+
+        // Get object id by location.
+        $menu_id = $location[$location];
+
+        return ! empty( $menu_id ) ? $menu_id : '';
+    }
 }
