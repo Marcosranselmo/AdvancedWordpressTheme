@@ -19,7 +19,7 @@ trait Singleton {
         if ( !isset( $instance[ $called_class ] ) ) {
             $instance[ $called_class ] = new $called_class();
 
-            do_action( sprintf( 'aquila_theme_singleton_init%s', $called_class ) );
+            do_action( sprintf( 'aquila_theme_singleton_init_%s', $called_class ) );
         }
 
         return $instance[ $called_class ];

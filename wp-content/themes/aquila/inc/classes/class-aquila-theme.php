@@ -13,8 +13,7 @@ use AQUILA_THEME\Inc\Traits\Singleton;
 class AQUILA_THEME {
     use Singleton;
 
-    protected function __construct()
-    {
+    protected function __construct() {
 
         // load class.
 
