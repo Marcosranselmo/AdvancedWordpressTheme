@@ -21,17 +21,19 @@ $header_menus = wp_get_nav_menu_items( $header_menu_id );
   <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
+
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <?php
     if ( ! empty( $header_menus ) && is_array( $header_menus ) ) {
       ?>
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+
         <?php
-        foreach ($header_menus as $menu_item) {
-          if (! $menu_item->menu_item_parent) {
+        foreach ( $header_menus as $menu_item ) {
+          if ( ! $menu_item->menu_item_parent ) {
 
             $child_menu_items = $menu_class->get_child_menu_items($header_menus, $menu_item->ID);
-            $has_children = !empty($child_menu_items) && is_array($child_menu_items);
+            $has_children = ! empty( $child_menu_items ) && is_array( $child_menu_items );
 
             if ( ! $has_children ) {
               ?>
@@ -44,10 +46,10 @@ $header_menus = wp_get_nav_menu_items( $header_menu_id );
             } else {
               ?>
               <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="<?php echo esc_url($menu_item->url);  ?>" id="navbarDropdwn" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                <a class="nav-link dropdown-toggle" href="<?php echo esc_url( $menu_item->url );  ?>" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                   <?php echo esc_html($menu_item->title); ?>
                 </a>
-                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                   <?php
                     foreach ( $child_menu_items as $child_menu_item ) {
                       ?>
@@ -57,7 +59,7 @@ $header_menus = wp_get_nav_menu_items( $header_menu_id );
                       <?php
                     }
                   ?>
-                </div>
+                </ul>
               </li>
             <?php
             }
