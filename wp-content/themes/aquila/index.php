@@ -38,30 +38,30 @@ get_header();
                         if ( 0 === $index % $no_of_columns ) {
                         ?>
                         <div class="col-lg-4 col-md-6 col-sm-12">
-                        <?php
-                        }
-                        ?>
-                        <h3><?php the_title(); ?></h3>
-                        <div><?php the_excerpt(); ?></div>
-                        <?php
-
-                        $index ++;
-                        // Index value = 2;
-
-                        if ( 0 !== $index && 0 === $index % $no_of_columns ) {
-                            ?>
-                            </div>
                             <?php
+                            }
+                            ?>
+                            <h3><?php the_title(); ?></h3>
+                            <div><?php the_excerpt(); ?></div>
+                            <?php
+
+                            $index ++;
+                            // Index value = 2;
+
+                            if ( 0 !== $index && 0 === $index % $no_of_columns ) {
+                            ?>
+                        </div>
+                        <?php
                         }
 
-                    endwhile;
-                        ?>
+                        endwhile;
+                    ?>
+                </div>
             </div>
-</div>
         <?php
         }
         ?>
-</main>
+    </main>
 </div>
 
 <?php get_footer(); ?>
