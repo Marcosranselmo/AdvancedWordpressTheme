@@ -23,7 +23,8 @@ class Meta_Boxes {
         /**
          * Actions.
          */
-        add_action('add_meta_boxes', [ $this, 'add_custom_meta_box' ]);
+        add_action('add_meta_boxes', [ $this, 'add_custom_meta_box' ] );
+        add_action( 'save_post', [ $this, 'save_post_meta_data' ] );
     }
 
     public function add_custom_meta_box() {
@@ -39,23 +40,31 @@ class Meta_Boxes {
         }
     }
 
-    public function add_custom_meta_box_html( $post ) {
+    public function custom_meta_box_html( $post ) {
 
         $value = get_post_meta( $post->ID, '_hide_page_title', true );
 
         ?>
         <label for="aquila-field"><?php esc_html_e( 'Hide the page title', 'aquila' ); ?></label>
-        <select name="aquila_field" id="aquila-field" class="postbox">
-            <option value=""></option><?php esc_html_e( 'Select', 'aquila' ); ?></option>
+        <select name="aquila_hide_title_field" id="aquila-field" class="postbox">
+            <option value=""><?php esc_html_e( 'Select', 'aquila' ); ?></option>
             <option value="yes" <?php selected( $value, 'yes'); ?>>
                 <?php esc_html_e( 'yes', 'aquila' ); ?>
             </option>
-            <option value="no"<?php selected( $value, 'no'); ?>>
+            <option value="no" <?php selected( $value, 'no'); ?>>
                 <?php esc_html_e( 'No', 'aquila' ); ?>>
             </option>
         </select>
         <?php
-
     }
 
+    public function save_post_meta_data( $post_id ) {
+        if (array_key_exists('aquila_hide_title_field', $_POST)) {
+            update_post_meta(
+                $post_id,
+                '_hide_page_title',
+                $_POST['aquila_hide_title_field']
+            );
+        }
+    }
 }
