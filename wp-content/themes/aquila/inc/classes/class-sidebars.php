@@ -13,22 +13,32 @@ class Sidebars {
     use Singleton;
 
     protected function __construct() {
-
-        // load class.
         $this->setup_hooks();
     }
 
+    /**
+     * To register action/filter.
+     * 
+     * @return void
+     */
     protected function setup_hooks() {
         
         /**
-         * Actions.
+         * Actions
          */
         add_action( 'widgets_init', [ $this, 'register_sidebars' ] );
+        add_action( 'widgets_init', [ $this, 'register_clock_widget' ] );
     }
 
+    /**
+     * Register widgets.
+     * 
+     * @paction widgets_init
+     */
     public function register_sidebars() {
 
-        register_sidebar( [
+        register_sidebar( 
+            [
             'name'          => __( 'Sidebar', 'aquila' ),
             'id'            => 'sidebar-1',
             'description'   => __( 'Main sidebar', 'aquila' ),
@@ -46,6 +56,12 @@ class Sidebars {
             'after_widget'  => '</div>',
             'before_title'  => '<h3 class="widget-title">',
             'after_title'   => '</h3>',
-        ] );
+            ] 
+        );
     }
+
+    public function register_clock_widget() {
+        register_widget( 'AQUILA_THEME\Inc\Clock_Widget' );
+    }
+
 }
