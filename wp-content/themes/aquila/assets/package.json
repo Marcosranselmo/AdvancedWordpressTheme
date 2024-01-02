@@ -4,9 +4,15 @@
     "description": "Aquila theme packages",
     "main": "main.js",
     "scripts": {
-        "test": "echo \"Error: no test specified\" && exit 1"
+        "prod": "cross-env NODE_ENV=production webpack --mode production --progress && npm run pot",
+        "dev": "cross-env NODE_ENV=development webpack --watch --mode development --progress",
+        "clean": "rm -rf build/*"
+
     },
-    "keywords": [ "wordpress", "themes" ],
+    "keywords": [
+    "wordpress", 
+    "themes" 
+],
     "author": "Inran Sayed",
     "license": "MIT",
     "private": true,

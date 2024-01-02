@@ -63,4 +63,7 @@ module.exports = ( env, argv ) => ({
         rules: rules,
     },
     plugins: plugins( argv ),
+    externals: {
+        jquery: 'jQuery'
+    }
 });
